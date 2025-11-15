@@ -2,7 +2,11 @@ import { Heart } from 'lucide-react';
 import { SectionProps } from './types';
 import { clsx } from '../../utils';
 
-export const Hero = ({ visible,id }: SectionProps) => {
+interface HeroProps extends SectionProps {
+  guestName?: string | null;
+}
+
+export const Hero = ({ visible, id, guestName }: HeroProps) => {
   return (
     <section
       id={id}
@@ -15,17 +19,18 @@ export const Hero = ({ visible,id }: SectionProps) => {
           visible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-10'
         )}
       >
-        <div className="mb-6">
-          <Heart className="w-16 h-16 text-rose-600 mx-auto mb-4 animate-pulse" />
-        </div>
-
-        <h1 className="font-playfair  text-7xl md:text-9xl mb-8 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 bg-clip-text text-transparent !leading-normal">
+        <h1 className="font-playfair text-7xl md:text-9xl mb-8 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 bg-clip-text text-transparent !leading-normal">
           Huy & Thủy
         </h1>
 
-        <h2 className="text-4xl md:text-6xl text-gray-600 mb-6 font-light tracking-wider">
+        <h2 className="text-2xl md:text-6xl text-gray-600 mb-6 font-light tracking-wider">
           TRÂN TRỌNG KÍNH MỜI
         </h2>
+        {guestName && (
+          <h3 className="text-4xl md:text-6xl my-6 text-rose-500 font-light">
+            {guestName}
+          </h3>
+        )}
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="h-px w-24 bg-gradient-to-r from-transparent to-rose-300"></div>
           <Heart className="w-6 h-6 text-rose-500 fill-current animate-pulse" />

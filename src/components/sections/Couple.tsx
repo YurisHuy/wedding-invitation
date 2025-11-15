@@ -88,7 +88,7 @@ export const Couple = ({ visible,id }: SectionProps) => {
             </p>
             <div className="max-w-sm mx-auto">
               <p className="text-gray-600 leading-relaxed font-sans italic mb-4 text-lg">
-                "Hạnh phúc lớn nhất là được ở bên em mỗi ngày"
+                "Chuyện tình mình cũng đã đến hồi kết. ‘Hồi kết hôn’."
               </p>
               <p className="text-gray-500 text-base">
                 Con trai ông Bùi Quang Hà

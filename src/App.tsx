@@ -3,6 +3,7 @@ import { Heart } from 'lucide-react';
 import Layout from './components/layout';
 import Section from './components/sections';
 import WeddingEnvelope from './components/WeddingEnvelope';
+import { AudioPlayer } from './components/AudioPlayer';
 
 function App() {
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
@@ -10,6 +11,23 @@ function App() {
     new Set([])
   );
 
+  const [guestName, setGuestName] = useState<string | null>(null);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const nameParam = urlParams.get('name');
+    if (nameParam && nameParam.trim()) {
+      try {
+        const decodedName = decodeURIComponent(nameParam.trim());
+        setGuestName(decodedName);
+      } catch {
+        setGuestName(nameParam.trim());
+      }
+    }
+  }, []);
+
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,7 +52,11 @@ function App() {
     if (envelopeOpened) {
       document.body.style.removeProperty('height');
       document.body.style.removeProperty('overflow');
+      setTimeout(() => {
+        setIsMusicPlaying(true);
+      }, 2500);
     } else {
+      setIsMusicPlaying(false);
       document.body.style.height = '100vh';
       document.body.style.overflow = 'hidden';
     }
@@ -51,8 +73,15 @@ function App() {
 
   return (
     <>
+      {envelopeOpened && (
+        <AudioPlayer 
+          isPlaying={isMusicPlaying}
+          onToggle={setIsMusicPlaying}
+          loop={true}
+        />
+      )}
       <Layout>
-        <Section.Hero id="hero" visible={visibleSections.has('hero')} />
+        <Section.Hero id="hero" visible={visibleSections.has('hero')} guestName={guestName} />
         <Section.Couple id="couple" visible={visibleSections.has('couple')} />
         <Section.Story visibleSections={visibleSections} />
         <Section.Family id="family" visible={visibleSections.has('family')} />

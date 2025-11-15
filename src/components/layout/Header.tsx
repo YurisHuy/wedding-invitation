@@ -82,7 +82,7 @@ export const Header = () => {
         <div className="flex justify-center items-center text-base">
           <div className="navbar-item">{render(navbarItems.left)}</div>
 
-          <Heart size={30} className="text-rose-600 fill-current mx-6" />
+          <Heart size={40} className="text-rose-600 mx-6"/>
 
           <div className="navbar-item">{render(navbarItems.right)}</div>
         </div>

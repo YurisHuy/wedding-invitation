@@ -34,7 +34,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         <Heart className="w-10 h-10 text-rose-400 fill-current" />
       </div>
       <div className="fixed bottom-20 right-20 animate-float-delayed opacity-20 pointer-events-none">
-        <Heart className="w-12 h-12 text-rose-400 fill-current" />
+        <Heart className="w-16 h-16 text-rose-400 fill-current" />
       </div>
       <Header />
 
